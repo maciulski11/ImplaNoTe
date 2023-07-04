@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Note::class], version = 3)
+@Database(entities = [Note::class], version = 1)
 abstract class NoteDatabase: RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
@@ -16,9 +16,9 @@ abstract class NoteDatabase: RoomDatabase() {
         fun fetchInstance(context: Context): NoteDatabase? {
             if (instance == null) {
                 instance = Room.databaseBuilder(
-                    context,
+                    context.applicationContext,
                     NoteDatabase::class.java,
-                    "note_table"
+                    "database"
                 )
                     .build()
             }

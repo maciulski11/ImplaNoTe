@@ -1,5 +1,6 @@
 package com.example.implanote
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 // na jakie operacje zezwalamy w bazie danych
@@ -15,7 +16,11 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(vararg note: Note)
 
-    // Query -> zapytanie
-    @Query("SELECT * FROM ${Note.NOTE_TABLE}")
-    fun fetchNotes(): List<Note>
+    // Query -> load note by id
+    @Query("SELECT * FROM noteTable WHERE id = :noteId")
+    suspend fun fetchNoteById(noteId: Int): Note?
+
+    // Query -> load all notes
+    @Query("SELECT * FROM noteTable")
+    fun fetchNotes(): LiveData<List<Note>>
 }
