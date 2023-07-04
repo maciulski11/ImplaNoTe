@@ -3,14 +3,16 @@ package com.example.implanote
 import android.app.Application
 import android.view.View
 import android.widget.EditText
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class NoteViewModel(application: Application): AndroidViewModel(application) {
+class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     val allNotes: LiveData<List<Note>>
     val note: MutableLiveData<Note?> = MutableLiveData()
@@ -36,12 +38,17 @@ class NoteViewModel(application: Application): AndroidViewModel(application) {
 
     fun fetchNoteById(noteId: Int, view: View) = viewModelScope.launch(Dispatchers.IO) {
         repository.fetchNoteById(noteId).let { note ->
-            val title = view.findViewById<EditText>(R.id.titleEditText)
-            val content = view.findViewById<EditText>(R.id.contentEditText)
+            withContext(Dispatchers.Main) {
+                val title = view.findViewById<EditText>(R.id.titleEditText)
+                val content = view.findViewById<EditText>(R.id.contentEditText)
+                val background = view.findViewById<ConstraintLayout>(R.id.editNoteBackground)
 
-            title.setText(note?.title)
-            content.setText(note?.content)
+
+                title.setText(note?.title)
+                content.setText(note?.content)
+                background.setBackgroundColor(note?.color.toString().toInt())
+
+            }
         }
-
     }
 }
