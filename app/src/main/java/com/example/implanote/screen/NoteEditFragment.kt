@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.fragment_note_edit.*
 import kotlinx.android.synthetic.main.fragment_note_edit.contentEditText
 import kotlinx.android.synthetic.main.fragment_note_edit.linearLayout
 import kotlinx.android.synthetic.main.fragment_note_edit.titleEditText
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NoteEditFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_note_edit
@@ -21,14 +23,20 @@ class NoteEditFragment : BaseFragment() {
     override fun subscribeUi() {
 
         val noteId = requireArguments().getInt("noteId")
+        selectedColor = requireArguments().getInt("color")
 
         updateButton.setOnClickListener {
+
+            val currentTime = Calendar.getInstance().time
+            val dateFormat = SimpleDateFormat("dd.MMM.yy HH:mm", Locale.getDefault())
+            val formattedTime = dateFormat.format(currentTime)
 
             val updateNote =
                 Note(
                     titleEditText.text.toString(),
                     contentEditText.text.toString(),
                     selectedColor.toString(),
+                    formattedTime,
                     noteId
                 )
 

@@ -10,11 +10,14 @@ import com.example.implanote.Note
 import com.example.implanote.NoteViewModel
 import com.example.implanote.R
 import kotlinx.android.synthetic.main.fragment_note_add.*
+import java.security.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NoteAddFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_note_add
 
-    var selectedColor: Int = 0
+    private var selectedColor: Int = 0
 
     private val viewModel: NoteViewModel by viewModels()
 
@@ -24,8 +27,11 @@ class NoteAddFragment : BaseFragment() {
 
             val title = titleEditText.text.toString()
             val content = contentEditText.text.toString()
+            val currentTime = Calendar.getInstance().time
+            val dateFormat = SimpleDateFormat("dd-MM-yy  HH:mm", Locale.getDefault())
+            val formattedTime = dateFormat.format(currentTime)
 
-            val addNote = Note(title, content, selectedColor.toString())
+            val addNote = Note(title, content, selectedColor.toString(), formattedTime)
             viewModel.insert(addNote)
 
             findNavController().navigate(R.id.action_addNoteFragment_to_noteFragment)

@@ -32,7 +32,10 @@ class NoteAdapter(
         val note = noteList[position]
 
         holder.itemNote.setOnClickListener {
-            val bundle = Bundle().apply { putInt("noteId", note.id) }
+            val bundle = Bundle().apply {
+                putInt("noteId", note.id)
+                putInt("color", note.color.toString().toInt())
+            }
 
             v.findNavController().navigate(R.id.action_noteFragment_to_noteEditFragment, bundle)
         }
@@ -49,11 +52,14 @@ class NoteAdapter(
         val itemNote: RelativeLayout = view.findViewById(R.id.itemNote)
         private val titleNote: TextView = view.findViewById(R.id.titleTextView)
         private val contentNote: TextView = view.findViewById(R.id.contentTextView)
+        private val dateNote: TextView = view.findViewById(R.id.dateTextView)
+
 
         fun bind(note: Note) {
 
             titleNote.text = note.title
             contentNote.text = note.content
+            dateNote.text = note.timestamp
 
             val backgroundDrawable = itemNote.background as? GradientDrawable
             backgroundDrawable?.setColor(note.color.toString().toInt())
