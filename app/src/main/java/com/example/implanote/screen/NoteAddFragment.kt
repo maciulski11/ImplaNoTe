@@ -5,12 +5,8 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.implanote.BaseFragment
-import com.example.implanote.Note
-import com.example.implanote.NoteViewModel
-import com.example.implanote.R
+import com.example.implanote.*
 import kotlinx.android.synthetic.main.fragment_note_add.*
-import java.security.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +24,7 @@ class NoteAddFragment : BaseFragment() {
             val title = titleEditText.text.toString()
             val content = contentEditText.text.toString()
             val currentTime = Calendar.getInstance().time
-            val dateFormat = SimpleDateFormat("dd-MM-yy  HH:mm", Locale.getDefault())
+            val dateFormat = SimpleDateFormat(NoteRepository.DATE_FORMAT, Locale.getDefault())
             val formattedTime = dateFormat.format(currentTime)
 
             val addNote = Note(title, content, selectedColor.toString(), formattedTime)
@@ -64,7 +60,6 @@ class NoteAddFragment : BaseFragment() {
             }
             linearLayout.addView(button)
         }
-
     }
 
     override fun unsubscribeUi() {

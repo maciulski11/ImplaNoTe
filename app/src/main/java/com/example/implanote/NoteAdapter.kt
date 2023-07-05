@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.HtmlCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NoteAdapter(
     private val noteList: ArrayList<Note>,
@@ -33,8 +35,8 @@ class NoteAdapter(
 
         holder.itemNote.setOnClickListener {
             val bundle = Bundle().apply {
-                putInt("noteId", note.id)
-                putInt("color", note.color.toString().toInt())
+                putInt(NoteRepository.NOTE_ID, note.id)
+                putInt(NoteRepository.NOTE_COLOR, note.color.toString().toInt())
             }
 
             v.findNavController().navigate(R.id.action_noteFragment_to_noteEditFragment, bundle)
@@ -57,9 +59,13 @@ class NoteAdapter(
 
         fun bind(note: Note) {
 
+            val originalFormat = SimpleDateFormat(NoteRepository.DATE_FORMAT, Locale.getDefault())
+            val newFormat = SimpleDateFormat("dd-MM-yy  HH:mm", Locale.getDefault())
+
             titleNote.text = note.title
             contentNote.text = note.content
-            dateNote.text = note.timestamp
+            dateNote.text = originalFormat.parse(note.timestamp.toString())
+                ?.run { newFormat.format(this) }
 
             val backgroundDrawable = itemNote.background as? GradientDrawable
             backgroundDrawable?.setColor(note.color.toString().toInt())

@@ -6,6 +6,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.implanote.*
 import kotlinx.android.synthetic.main.fragment_note.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NoteFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_note
@@ -35,6 +38,12 @@ class NoteFragment : BaseFragment() {
             list?.let {
                 noteList.clear()
                 noteList.addAll(list)
+                noteList.sortByDescending {
+                    SimpleDateFormat(
+                        NoteRepository.DATE_FORMAT,
+                        Locale.getDefault()
+                    ).parse(it.timestamp.toString())
+                }
                 adapter.notifyDataSetChanged()
             }
         })

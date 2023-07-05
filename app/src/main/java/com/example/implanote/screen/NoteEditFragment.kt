@@ -22,13 +22,13 @@ class NoteEditFragment : BaseFragment() {
 
     override fun subscribeUi() {
 
-        val noteId = requireArguments().getInt("noteId")
-        selectedColor = requireArguments().getInt("color")
+        val noteId = requireArguments().getInt(NoteRepository.NOTE_ID)
+        selectedColor = requireArguments().getInt(NoteRepository.NOTE_COLOR)
 
         updateButton.setOnClickListener {
 
             val currentTime = Calendar.getInstance().time
-            val dateFormat = SimpleDateFormat("dd.MMM.yy HH:mm", Locale.getDefault())
+            val dateFormat = SimpleDateFormat(NoteRepository.DATE_FORMAT, Locale.getDefault())
             val formattedTime = dateFormat.format(currentTime)
 
             val updateNote =
