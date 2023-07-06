@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.example.implanote.screen.NoteFragment"
+        android:name="com.example.implanote.ui.screen.NoteFragment"
         android:label="NoteFragment" >
         <action
             android:id="@+id/action_noteFragment_to_addNoteFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/noteAddFragment"
-        android:name="com.example.implanote.screen.NoteAddFragment"
+        android:name="com.example.implanote.ui.screen.NoteAddFragment"
         android:label="NoteAddFragment">
         <action
             android:id="@+id/action_addNoteFragment_to_noteFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/noteEditFragment"
-        android:name="com.example.implanote.screen.NoteEditFragment"
+        android:name="com.example.implanote.ui.screen.NoteEditFragment"
         android:label="NoteEditFragment" >
         <action
             android:id="@+id/action_noteEditFragment_to_noteFragment"

@@ -1,6 +1,8 @@
-package com.example.implanote
+package com.example.implanote.services.repository
 
 import androidx.lifecycle.LiveData
+import com.example.implanote.NoteDao
+import com.example.implanote.model.data.Note
 
 class NoteRepository(private var noteDao: NoteDao) {
 

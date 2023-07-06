@@ -1,11 +1,22 @@
-package com.example.implanote.screen
+package com.example.implanote.ui.screen
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.implanote.*
+import com.example.implanote.base.BaseFragment
+import com.example.implanote.model.data.Note
+import com.example.implanote.model.view_model.NoteViewModel
+import com.example.implanote.services.repository.NoteRepository
+import com.example.implanote.services.utils.AnimationUtils
+import com.example.implanote.services.utils.ColorUtils
+import com.example.implanote.services.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_note_edit.*
 import kotlinx.android.synthetic.main.fragment_note_edit.contentEditText
 import kotlinx.android.synthetic.main.fragment_note_edit.linearLayout
@@ -42,7 +53,20 @@ class NoteEditFragment : BaseFragment() {
 
             viewModel.update(updateNote)
 
-            findNavController().navigate(R.id.action_noteEditFragment_to_noteFragment)
+            findNavController().navigate(
+                R.id.action_noteEditFragment_to_noteFragment,
+                null,
+                AnimationUtils.downNavAnim
+            )
+
+            ToastUtils.customToast(
+                requireContext(),
+                "Successful update!",
+                R.drawable.ic_baseline_check_circle_outline_24,
+                R.color.white,
+                R.color.green,
+                Toast.LENGTH_SHORT
+            )
         }
 
         viewModel.fetchNoteById(noteId, requireView())
@@ -52,14 +76,7 @@ class NoteEditFragment : BaseFragment() {
 
     private fun changeBackgroundColor() {
 
-        val colorResIds = listOf(
-            R.color.yellow,
-            R.color.babyBlue,
-            R.color.orange,
-            R.color.mint,
-            R.color.red,
-            R.color.white
-        )
+        val colorResIds = ColorUtils.colorList
 
         for (colorResId in colorResIds) {
             val button = ImageView(requireContext())
@@ -74,6 +91,23 @@ class NoteEditFragment : BaseFragment() {
                 editNoteBackground.setBackgroundColor(color)
             }
             linearLayout.addView(button)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.return_button, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.returnNoteList -> {
+                findNavController().navigate(
+                    R.id.action_noteEditFragment_to_noteFragment,
+                    null,
+                    AnimationUtils.rightNavAnim)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.implanote
+package com.example.implanote.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,11 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment: Fragment() {
 
     protected abstract val layout : Int
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(layout, container, false)

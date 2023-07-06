@@ -1,4 +1,4 @@
-package com.example.implanote
+package com.example.implanote.model.view_model
 
 import android.app.Application
 import android.view.View
@@ -8,6 +8,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.implanote.NoteDatabase
+import com.example.implanote.services.repository.NoteRepository
+import com.example.implanote.R
+import com.example.implanote.model.data.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

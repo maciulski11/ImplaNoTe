@@ -1,9 +1,7 @@
-package com.example.implanote
+package com.example.implanote.model.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import java.util.*
 
 // Entity -> wejscie dla bazy danych
 @Entity(tableName = "noteTable")

@@ -1,10 +1,16 @@
-package com.example.implanote.screen
+package com.example.implanote.ui.screen
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.implanote.*
+import com.example.implanote.base.BaseFragment
+import com.example.implanote.model.data.Note
+import com.example.implanote.model.view_model.NoteViewModel
+import com.example.implanote.services.repository.NoteRepository
+import com.example.implanote.ui.adapter.NoteAdapter
+import com.example.implanote.services.utils.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_note.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,8 +56,11 @@ class NoteFragment : BaseFragment() {
 
         addNoteButton.setOnClickListener {
 
-            findNavController().navigate(R.id.action_noteFragment_to_addNoteFragment)
-
+            findNavController().navigate(
+                R.id.action_noteFragment_to_addNoteFragment,
+                null,
+                AnimationUtils.topNavAnim
+            )
         }
     }
 

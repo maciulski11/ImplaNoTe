@@ -2,6 +2,7 @@ package com.example.implanote
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.implanote.model.data.Note
 
 // na jakie operacje zezwalamy w bazie danych
 @Dao

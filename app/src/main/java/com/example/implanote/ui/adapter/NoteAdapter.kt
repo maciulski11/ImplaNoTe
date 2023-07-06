@@ -1,4 +1,4 @@
-package com.example.implanote
+package com.example.implanote.ui.adapter
 
 import android.app.AlertDialog
 import android.graphics.drawable.GradientDrawable
@@ -12,6 +12,10 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.implanote.services.repository.NoteRepository
+import com.example.implanote.R
+import com.example.implanote.model.data.Note
+import com.example.implanote.services.utils.AnimationUtils
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -39,7 +43,11 @@ class NoteAdapter(
                 putInt(NoteRepository.NOTE_COLOR, note.color.toString().toInt())
             }
 
-            v.findNavController().navigate(R.id.action_noteFragment_to_noteEditFragment, bundle)
+            v.findNavController().navigate(
+                R.id.action_noteFragment_to_noteEditFragment,
+                bundle,
+                AnimationUtils.leftNavAnim
+            )
         }
 
         holder.bind(note)
