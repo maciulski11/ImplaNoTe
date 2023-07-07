@@ -43,7 +43,7 @@ class NoteAddFragment : BaseFragment() {
             titleEditText.text.toString().isEmpty() -> {
                 ToastUtils.customToast(
                     requireContext(),
-                    "Title is empty!",
+                    "Title can't be empty!",
                     R.drawable.ic_baseline_remove_circle_outline_24,
                     R.color.white,
                     R.color.red,
@@ -53,7 +53,7 @@ class NoteAddFragment : BaseFragment() {
             contentEditText.text.toString().isEmpty() -> {
                 ToastUtils.customToast(
                     requireContext(),
-                    "Content is empty!",
+                    "Content can't be empty!",
                     R.drawable.ic_baseline_remove_circle_outline_24,
                     R.color.white,
                     R.color.red,
