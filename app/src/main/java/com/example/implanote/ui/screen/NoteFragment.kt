@@ -1,5 +1,6 @@
 package com.example.implanote.ui.screen
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,7 @@ class NoteFragment : BaseFragment() {
 
         viewModel.allNotes.observe(this, Observer { list ->
             list?.let {
+
                 noteList.clear()
                 noteList.addAll(list)
                 noteList.sortByDescending {
@@ -50,9 +52,18 @@ class NoteFragment : BaseFragment() {
                         Locale.getDefault()
                     ).parse(it.timestamp.toString())
                 }
+
+                if (recyclerViewNote.adapter?.itemCount == 0) {
+                    emptyNotesTextView.visibility = View.VISIBLE
+                } else {
+                    emptyNotesTextView.visibility = View.GONE
+                }
+
                 adapter.notifyDataSetChanged()
             }
         })
+
+
 
         addNoteButton.setOnClickListener {
 

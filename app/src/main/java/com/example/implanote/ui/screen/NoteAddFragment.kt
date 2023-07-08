@@ -45,9 +45,7 @@ class NoteAddFragment : BaseFragment() {
                     requireContext(),
                     "Title can't be empty!",
                     R.drawable.ic_baseline_remove_circle_outline_24,
-                    R.color.white,
-                    R.color.red,
-                    Toast.LENGTH_SHORT
+                    R.color.red
                 )
             }
             contentEditText.text.toString().isEmpty() -> {
@@ -55,9 +53,7 @@ class NoteAddFragment : BaseFragment() {
                     requireContext(),
                     "Content can't be empty!",
                     R.drawable.ic_baseline_remove_circle_outline_24,
-                    R.color.white,
-                    R.color.red,
-                    Toast.LENGTH_SHORT
+                    R.color.red
                 )
             }
             else -> {
@@ -65,9 +61,7 @@ class NoteAddFragment : BaseFragment() {
                     requireContext(),
                     "Success!",
                     R.drawable.ic_baseline_check_circle_outline_24,
-                    R.color.white,
-                    R.color.green,
-                    Toast.LENGTH_SHORT
+                    R.color.green
                 )
                 addNote()
             }

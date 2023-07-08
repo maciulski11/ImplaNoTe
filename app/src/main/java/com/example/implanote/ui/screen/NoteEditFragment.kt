@@ -63,9 +63,7 @@ class NoteEditFragment : BaseFragment() {
                 requireContext(),
                 "Successful update!",
                 R.drawable.ic_baseline_check_circle_outline_24,
-                R.color.white,
-                R.color.green,
-                Toast.LENGTH_SHORT
+                R.color.green
             )
         }
 

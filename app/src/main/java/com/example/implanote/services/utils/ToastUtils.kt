@@ -17,9 +17,7 @@ object ToastUtils {
         context: Context,
         message: String,
         iconResId: Int,
-        textColor: Int,
         backgroundToastColor: Int,
-        duration: Int
     ) {
         val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
         // Creates a LayoutInflater object which can be used to inflate a custom layout.
@@ -43,15 +41,15 @@ object ToastUtils {
         // sets the tint color of the provided icon to white, and sets it as the image for the ImageView.
         val iconView = view.findViewById<ImageView>(R.id.toast_icon)
         icon?.let {
-            DrawableCompat.setTint(it, ContextCompat.getColor(context, textColor))
+            DrawableCompat.setTint(it, ContextCompat.getColor(context, R.color.white))
             iconView.setImageDrawable(it)
         }
         view.background = backgroundDrawable
         textView.text = message
         textView.gravity = Gravity.CENTER
-        textView.setTextColor(ContextCompat.getColor(context, textColor))
+        textView.setTextColor(ContextCompat.getColor(context, R.color.white))
 
-        toast.duration = duration
+        toast.duration = Toast.LENGTH_SHORT
         toast.view = view
         toast.show()
     }
