@@ -38,7 +38,7 @@
         android:id="@+id/emptyNotesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You don't have any notes yet."
+        android:text="Your note list is empty."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

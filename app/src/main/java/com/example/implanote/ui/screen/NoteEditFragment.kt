@@ -1,5 +1,6 @@
 package com.example.implanote.ui.screen
 
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -93,7 +94,9 @@ class NoteEditFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.return_button, menu)
+        Handler().postDelayed({
+            inflater.inflate(R.menu.return_button, menu)
+        }, 300)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

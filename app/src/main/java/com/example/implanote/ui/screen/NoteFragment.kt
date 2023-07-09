@@ -63,8 +63,6 @@ class NoteFragment : BaseFragment() {
             }
         })
 
-
-
         addNoteButton.setOnClickListener {
 
             findNavController().navigate(
