@@ -113,6 +113,5 @@ class NoteEditFragment : BaseFragment() {
     }
 
     override fun unsubscribeUi() {
-
     }
 }
