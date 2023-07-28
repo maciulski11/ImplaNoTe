@@ -74,6 +74,5 @@ class NoteFragment : BaseFragment() {
     }
 
     override fun unsubscribeUi() {
-
     }
 }
