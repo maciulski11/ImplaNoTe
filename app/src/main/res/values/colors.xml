@@ -11,14 +11,15 @@
     <color name="yellow">#FFF9C4</color>
     <color name="mint"> #B2E8C4</color>
     <color name="rose">#FFC4C1</color>
-    <color name="orange">#FFD8B7</color>
     <color name="babyBlue">#B3C6E7</color>
     <color name="gray">#B5AFAF</color>
     <color name="purple">#B19CD9</color>
 
+
+    <color name="orange">#FFD8B7</color>
+
     <color name="red">#CF2020</color>
     <color name="green">#359556</color>
     <color name="cursor_gray">#888888</color>
-
 
 </resources>
